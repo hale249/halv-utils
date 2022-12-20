@@ -1,0 +1,21 @@
+{
+  "name": "halv-utils",
+  "version": "1.0.0",
+  "description": "Packages common utils",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "publish": "npm publish --access public",
+    "build": "rmdir /s /Q .\\dist && tsc",
+    "build-linux": "rm -rf ./dist && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "utils"
+  ],
+  "author": "hale249 <lehatybg1@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  }
+}
