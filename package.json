@@ -1,6 +1,6 @@
 {
   "name": "@mirawayltd/ts-utils",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Common utils",
   "main": "dist/index.umd.js",
   "module": "dist/index.mjs",
@@ -17,8 +17,7 @@
     "huskyinstall": "husky install",
     "prettier": "prettier --write \"**/*.{ts,js,json,md}\"",
     "build:library": "yarn clean && vite build --config config/library.ts && yarn type",
-    "publish": "npm publish --access public",
-    "release": "yarn build:library && yarn publish"
+    "release": "yarn build:library && yarn publish --access public"
   },
   "keywords": [
     "utils",
@@ -31,6 +30,10 @@
     "url": "git+https://github.com/hale249/halv-utils.git",
     "type": "git"
   },
+  "files": [
+    "dist",
+    "*.md"
+  ],
   "author": "hale249 <lehatybg1@gmail.com>",
   "license": "ISC",
   "devDependencies": {
