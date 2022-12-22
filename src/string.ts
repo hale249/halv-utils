@@ -16,7 +16,7 @@ const cacheStringFunction = <T extends (str: string) => string>(fn: T): T => {
 const camelizeRE = /-(\w)/g;
 
 export const camelize = cacheStringFunction((str: string): string => {
-  return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ""));
+  return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''));
 });
 
 /**
@@ -31,7 +31,7 @@ export const capitalize = cacheStringFunction((str: string) => str.charAt(0).toU
  * @param count
  * @param suffix
  */
-export const pluralize = (word: string, count = 1, suffix = "s"): string => {
+export const pluralize = (word: string, count = 1, suffix = 's'): string => {
   return count <= 1 ? word : `${word}${suffix}`;
 };
 
@@ -41,7 +41,7 @@ export const pluralize = (word: string, count = 1, suffix = "s"): string => {
  * @param limit
  * @param text
  */
-export const truncate = (str: string, limit: number, text = "..."): string => {
+export const truncate = (str: string, limit: number, text = '...'): string => {
   if (str.length > limit) {
     return `${str.substring(0, limit)} ${text}`;
   }
@@ -54,7 +54,7 @@ export const truncate = (str: string, limit: number, text = "..."): string => {
  * @param text
  */
 export const trimSpace = (text: string): string => {
-  return text.replace(/\s{2,}/g, " ").trim();
+  return text.replace(/\s{2,}/g, ' ').trim();
 };
 
 /**
@@ -63,14 +63,14 @@ export const trimSpace = (text: string): string => {
  * @return {boolean}
  */
 const re = new RegExp(
-  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 );
 export const isValidEmail = (email: string) => {
-  if (!email.includes("@")) {
+  if (!email.includes('@')) {
     return false;
   }
 
-  const splitEmail = email.split("@");
+  const splitEmail = email.split('@');
   if (splitEmail[0].length > 64 || splitEmail[1].length > 255) {
     return false;
   }
@@ -82,9 +82,9 @@ export const isValidEmail = (email: string) => {
 export const findAndReplace = (string: string, search: object) => {
   const regexp = new RegExp(
     Object.keys(search)
-      .map((item) => item.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&"))
-      .join("|"),
-    "g"
+      .map(item => item.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'))
+      .join('|'),
+    'g',
   );
   // @ts-ignore
   return string.replace(regexp, (match: any) => search[match]);
@@ -96,7 +96,7 @@ export const isValidPhoneNumber = (phoneNumber: string) => {
 };
 
 export const existSpecialChar = (string: string) => {
-  const specialChars = "<>@!#$%^&*()_+[]{}?:;|'\"\\,./~`-=";
+  const specialChars = '<>@!#$%^&*()_+[]{}?:;|\'"\\,./~`-=';
   for (let i = 0; i < specialChars.length; i++) {
     if (string.indexOf(specialChars[i]) > -1) {
       return true;
@@ -109,11 +109,11 @@ export const existNumber = (string: string) => {
   return /[0-9]/.test(string);
 };
 
-export const removeNullByte = (str: string) => str.replace(/\0.*$/g, "");
+export const removeNullByte = (str: string) => str.replace(/\0.*$/g, '');
 
 export const getMemberName = (memberName: string): string => {
   if (memberName && memberName.length > 19) {
-    const arrayText = memberName.split(" ");
+    const arrayText = memberName.split(' ');
     return arrayText
       .map((itemName, index) => {
         if (index !== arrayText.length - 1) {
@@ -122,10 +122,10 @@ export const getMemberName = (memberName: string): string => {
 
         return itemName;
       })
-      .join(".");
+      .join('.');
   }
 
-  return memberName || "";
+  return memberName || '';
 };
 
 // String functions
@@ -142,10 +142,10 @@ export function stringToSlug(str: string, separator: string) {
   }
 
   return str
-      .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-      .replace(/\s+/g, '-') // collapse whitespace and replace by -
-      .replace(/-+/g, '-') // collapse dashes
-      .replace(/^-+/, '') // trim - from start of text
-      .replace(/-+$/, '') // trim - from end of text
-      .replace(/-/g, separator);
+    .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+    .replace(/\s+/g, '-') // collapse whitespace and replace by -
+    .replace(/-+/g, '-') // collapse dashes
+    .replace(/^-+/, '') // trim - from start of text
+    .replace(/-+$/, '') // trim - from end of text
+    .replace(/-/g, separator);
 }

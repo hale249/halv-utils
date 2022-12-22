@@ -1,32 +1,32 @@
 /**
- * Check type numeric
+ * Check types numeric
  *
  * @param {*} val
  * @returns
  */
-import {isEmpty} from "./is-empty";
+import { isEmpty } from './is';
 
 export const isNumeric = (val: any) => {
-    return /^-?\d+$/.test(val);
+  return /^-?\d+$/.test(val);
 };
 
 export const hasDuplicates = (arr: Array<any>) => {
-    if (isEmpty(arr)) {
-        return false;
-    }
+  if (isEmpty(arr)) {
+    return false;
+  }
 
-    return new Set(arr).size !== arr.length;
+  return new Set(arr).size !== arr.length;
 };
 /**
  * Find duplicate to array
  * @param dataList
  */
 export const findDuplicates = (dataList: Array<any>) => {
-    if (isEmpty(dataList)) {
-        return [];
-    }
+  if (isEmpty(dataList)) {
+    return [];
+  }
 
-    return dataList.filter((item: any, index: number) => index !== dataList.indexOf(item));
+  return dataList.filter((item: any, index: number) => index !== dataList.indexOf(item));
 };
 
 /**
@@ -34,11 +34,11 @@ export const findDuplicates = (dataList: Array<any>) => {
  * @param str
  */
 export const hasNumber = (str: string) => {
-    if (!str) {
-        return false;
-    }
+  if (!str) {
+    return false;
+  }
 
-    return /\d/.test(str);
+  return /\d/.test(str);
 };
 
 /**
@@ -46,7 +46,7 @@ export const hasNumber = (str: string) => {
  * @param str
  */
 export const hasUpperCase = (str: string) => {
-    return str !== str.toLowerCase();
+  return str !== str.toLowerCase();
 };
 
 /**
@@ -54,5 +54,5 @@ export const hasUpperCase = (str: string) => {
  * @param str
  */
 export const hasWhiteSpace = (str: string) => {
-    return /\s/g.test(str);
+  return /\s/g.test(str);
 };

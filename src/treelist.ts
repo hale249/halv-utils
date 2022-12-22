@@ -1,18 +1,14 @@
 /**
- * Build tree data list
+ *  Build tree data
  * @param nodes
  * @param parentId
+ * @param link
  */
-export function makeTree(nodes: any[], parentId: any): any {
+export const makeTree = (nodes: Array<any>, parentId = null, link = 'parentId'): Array<any> => {
   return nodes
-      .filter((node) => node.parentId === parentId)
-      .reduce(
-          (tree, node) => [
-            ...tree,
-            {
-              ...node,
-              children: makeTree(nodes, node.id),
-            },
-          ],
-          []
-      ); }
+    .filter((item: any) => item[link] === parentId)
+    .map((item: any) => ({
+      ...item,
+      children: makeTree(nodes, item.id),
+    }));
+};

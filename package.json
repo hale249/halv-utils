@@ -1,21 +1,100 @@
 {
-  "name": "halv-utils",
-  "version": "1.0.0",
-  "description": "Packages common utils",
-  "main": "dist/index.js",
+  "name": "@mirawayltd/ts-utils",
+  "version": "0.0.1",
+  "description": "Common utils",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/hale249/halv-utils/issues"
+  },
+  "homepage": "https://github.com/hale249/halv-utils/tree/master#readme",
   "scripts": {
+    "clean": "rimraf dist* coverage",
+    "format": "eslint --fix --ext .js,.jsx .",
+    "type": "tsc --outdir dist",
+    "pre-commit": "lint-staged",
+    "huskyinstall": "husky install",
+    "prettier": "prettier --write \"**/*.{ts,js,json,md}\"",
+    "build:library": "yarn clean && vite build --config config/library.ts && yarn type",
     "publish": "npm publish --access public",
-    "build": "rmdir /s /Q .\\dist && tsc",
-    "build-linux": "rm -rf ./dist && tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "release": "yarn build:library && yarn publish"
   },
   "keywords": [
-    "utils"
+    "utils",
+    "logger",
+    "promise",
+    "typescript",
+    "js"
   ],
+  "repository": {
+    "url": "git+https://github.com/hale249/halv-utils.git",
+    "type": "git"
+  },
   "author": "hale249 <lehatybg1@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "typescript": "^4.9.4"
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "@types/isomorphic-fetch": "^0.0.36",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
+    "devmoji": "^2.3.0",
+    "eslint": "^8.30.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.3",
+    "vitest": "^0.26.2"
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "bracketSpacing": true,
+    "htmlWhitespaceSensitivity": "ignore",
+    "insertPragma": false,
+    "jsxSingleQuote": false,
+    "printWidth": 120,
+    "proseWrap": "preserve",
+    "quoteProps": "as-needed",
+    "requirePragma": false,
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "useTabs": false
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "plugins": [
+      "prettier"
+    ],
+    "extends": [
+      "prettier"
+    ],
+    "rules": {
+      "no-console": "off",
+      "@typescript-eslint/no-use-before-define": "off",
+      "prettier/prettier": "error",
+      "import/export": "off",
+      "antfu/if-newline": "off"
+    }
+  },
+  "dependencies": {
+    "isomorphic-fetch": "^3.0.0",
+    "universal-cookie": "^4.0.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }

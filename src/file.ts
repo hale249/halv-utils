@@ -15,14 +15,14 @@ export const convertFileToBinary = (file: Blob): Promise<string> => {
   });
 };
 
-const jpegType = "image/jpeg";
+const jpegType = 'image/jpeg';
 const jpgBase64Prefix = `data:${jpegType};base64,`;
 
 export const base64ToBlob = (dataURI: string): Blob => {
-  // add content type
+  // add content types
   dataURI = `${jpgBase64Prefix}${dataURI}`;
 
-  const byteString = window.atob(dataURI.split(",")[1]);
+  const byteString = window.atob(dataURI.split(',')[1]);
   const ab = new ArrayBuffer(byteString.length);
   const ia = new Uint8Array(ab);
 

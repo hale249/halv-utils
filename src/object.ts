@@ -3,7 +3,7 @@
  * @param obj
  * @param key
  */
-export const hasOwn = (obj: any, key: string) => typeof obj[key] !== "undefined";
+export const hasOwn = (obj: any, key: string) => typeof obj[key] !== 'undefined';
 
 /**
  * Is diff two object
@@ -23,7 +23,7 @@ export const isObjectDiff = (obj1: any, obj2: any) => {
 export const cloneDeep = (obj: any): any => {
   if (Array.isArray(obj)) {
     return obj.map(cloneDeep);
-  } else if (obj && typeof obj === "object") {
+  } else if (obj && typeof obj === 'object') {
     const cloned: any = {};
     const keys = Object.keys(obj);
     for (let i = 0, l = keys.length; i < l; i++) {
